@@ -3,6 +3,14 @@
 <plist version="1.0">
 <dict>
     
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSExceptionDomains</key>
