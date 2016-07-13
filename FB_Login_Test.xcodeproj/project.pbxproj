@@ -12,6 +12,8 @@
 		ECD87CAB1D36C55A00895BD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD87CA91D36C55A00895BD9 /* Main.storyboard */; };
 		ECD87CAD1D36C55A00895BD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECD87CAC1D36C55A00895BD9 /* Assets.xcassets */; };
 		ECD87CB01D36C55A00895BD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECD87CAE1D36C55A00895BD9 /* LaunchScreen.storyboard */; };
+		ECD87CB91D36C63800895BD9 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD87CB71D36C63800895BD9 /* FBSDKCoreKit.framework */; };
+		ECD87CBA1D36C63800895BD9 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECD87CB81D36C63800895BD9 /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,9 @@
 		ECD87CAC1D36C55A00895BD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECD87CAF1D36C55A00895BD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECD87CB11D36C55A00895BD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECD87CB71D36C63800895BD9 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		ECD87CB81D36C63800895BD9 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		ECD87CBB1D36C87600895BD9 /* FB_Login_Test-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FB_Login_Test-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECD87CBA1D36C63800895BD9 /* FBSDKLoginKit.framework in Frameworks */,
+				ECD87CB91D36C63800895BD9 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +67,9 @@
 				ECD87CAC1D36C55A00895BD9 /* Assets.xcassets */,
 				ECD87CAE1D36C55A00895BD9 /* LaunchScreen.storyboard */,
 				ECD87CB11D36C55A00895BD9 /* Info.plist */,
+				ECD87CB71D36C63800895BD9 /* FBSDKCoreKit.framework */,
+				ECD87CB81D36C63800895BD9 /* FBSDKLoginKit.framework */,
+				ECD87CBB1D36C87600895BD9 /* FB_Login_Test-Bridging-Header.h */,
 			);
 			path = FB_Login_Test;
 			sourceTree = "<group>";
@@ -250,10 +260,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FB_Login_Test",
+				);
 				INFOPLIST_FILE = FB_Login_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fernando.FB-Login-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FB_Login_Test/FB_Login_Test-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -261,10 +278,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FB_Login_Test",
+				);
 				INFOPLIST_FILE = FB_Login_Test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fernando.FB-Login-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FB_Login_Test/FB_Login_Test-Bridging-Header.h";
 			};
 			name = Release;
 		};
