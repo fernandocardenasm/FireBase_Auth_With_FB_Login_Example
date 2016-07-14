@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
@@ -29,6 +30,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if let token = FBSDKAccessToken.currentAccessToken(){
             fetchProfile()
+            loginFireBase()
         }
     }
     
@@ -69,15 +71,26 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
+    func loginFireBase(){
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        
+        FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+            print("User name")
+            print(user?.displayName)
+        })
+    }
+    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("Completed login")
         fetchProfile()
+        loginFireBase()
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("Completed logout")
         self.profileName.text = ""
         self.profileImage.image = UIImage(named: "imgres")
+        try! FIRAuth.auth()!.signOut()
     }
     func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
         return true;
