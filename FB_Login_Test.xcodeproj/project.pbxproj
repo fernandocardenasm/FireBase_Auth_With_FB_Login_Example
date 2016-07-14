@@ -310,6 +310,7 @@
 				ECD87CB61D36C55A00895BD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

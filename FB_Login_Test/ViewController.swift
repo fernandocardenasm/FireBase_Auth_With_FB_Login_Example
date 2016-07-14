@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    
     let loginButton: FBSDKLoginButton = {
        let button = FBSDKLoginButton()
         button.readPermissions = ["email"]
@@ -39,15 +43,29 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
                 return
             }
             
-            if let first_name = user["first_name"] as? String{
-                print("first_name")
-                print(first_name)
+            if let first_name = user["first_name"] as? String,
+            last_name = user["last_name"] as? String{
+                self.profileName.text = "\(first_name) \(last_name)"
+            }
+            var pictureUrl = ""
+            
+            if  let picture = user["picture"] as? NSDictionary, data = picture["data"] as? NSDictionary, url = data["url"] as? String {
+                pictureUrl = url
             }
             
-            if let picture = user["picture"] as? NSDictionary, data = picture["data"] as? NSDictionary, url = data["url"] as? String {
-                print("url")
-                print(url)
-            }
+            let url = NSURL(string: pictureUrl)
+            NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                
+                let image = UIImage(data: data!)
+                dispatch_async(dispatch_get_main_queue(), { () in
+                    self.profileImage.image = image
+                })
+                
+            }).resume()
         }
     }
     
@@ -58,6 +76,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("Completed logout")
+        self.profileName.text = ""
+        self.profileImage.image = UIImage(named: "imgres")
     }
     func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
         return true;
